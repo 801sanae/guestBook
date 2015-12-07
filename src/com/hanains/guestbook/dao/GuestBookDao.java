@@ -16,6 +16,9 @@ public class GuestBookDao {
 	PreparedStatement pstmt = null;
 	Statement stmt = null;
 	ResultSet rs = null;
+//	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+	String url = "jdbc:oracle:thin:@//localhost:1521/orcl";
+
 	
 	//TODO
 	public void insert(GuestBookVo vo){
@@ -24,7 +27,8 @@ public class GuestBookDao {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			//2. DB 연결
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+////			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+//			String url = "jdbc:oracle:thin:@//localhost:1521/orcl";
 			
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 			
@@ -41,6 +45,7 @@ public class GuestBookDao {
 			pstmt.executeQuery();
 		} catch (ClassNotFoundException e1) {
 			System.out.println("드라이버 로딩 실패 : " + e1);
+			e1.printStackTrace();
 		} catch (SQLException e2) {
 			System.out.println("DB 연결 실패 : " + e2);
 		} finally{
@@ -59,7 +64,9 @@ public class GuestBookDao {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			//2. DB 연결
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//			String url = "jdbc:oracle:thin:@127.0.0.1:1521/orcl";
+			
 			
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 			
@@ -94,7 +101,8 @@ public class GuestBookDao {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 
 		//2. DB 연결
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+////		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//		String url = "jdbc:oracle:thin:@127.0.0.1:1521/orcl";
 		
 		conn = DriverManager.getConnection(url, "webdb", "webdb");
 		//3. statement 생성
@@ -126,6 +134,7 @@ public class GuestBookDao {
 		
 		} catch (ClassNotFoundException e1) {
 			System.out.println("드라이버 로딩 실패 : " + e1);
+			e1.printStackTrace();
 		} catch (SQLException e2) {
 			System.out.println("DB 연결 실패 : " + e2);
 		} finally{
