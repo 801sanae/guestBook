@@ -41,9 +41,13 @@ public class GuestBookDao {
 	//TODO
 	public void insert(GuestBookVo vo){
 		try{
+			//1. 드라이버 로딩(class 로딩) 동적로딩
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 
+			//2. DB 연결
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 
-			conn =getConnection(); 
+			conn = DriverManager.getConnection(url, "webdb", "webdb");
 
 			//3. statement준비
 			String sql = "insert into guestbook values("
@@ -56,7 +60,9 @@ public class GuestBookDao {
 			pstmt.setString(3, vo.getMessage());
 			//5. sql실행
 			pstmt.executeQuery();
-		}catch (SQLException e2) {
+		} catch (ClassNotFoundException e1) {
+			System.out.println("드라이버 로딩 실패 : " + e1);
+		} catch (SQLException e2) {
 			System.out.println("DB 연결 실패 : " + e2);
 		} finally{
 			try{
@@ -69,8 +75,14 @@ public class GuestBookDao {
 	//TODO
 	public void delete(GuestBookVo vo){
 		try{
+			System.out.println("::"+"delete start");
+			//1. 드라이버 로딩(class 로딩) 동적로딩
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			conn = getConnection();
+			//2. DB 연결
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+
+			conn = DriverManager.getConnection(url, "webdb", "webdb");
 
 			//3. statement준비
 			String sql = "delete from guestbook where no=? and password=?"; 
@@ -81,6 +93,8 @@ public class GuestBookDao {
 			pstmt.setString(2, vo.getPassword());
 			//5. sql실행
 			pstmt.executeQuery();
+		} catch (ClassNotFoundException e1) {
+			System.out.println("드라이버 로딩 실패 : " + e1);
 		} catch (SQLException e2) {
 			System.out.println("DB 연결 실패 : " + e2);
 		} finally{
@@ -97,8 +111,13 @@ public class GuestBookDao {
 		List<GuestBookVo> list = new ArrayList<GuestBookVo>();
 
 		try{
-			
-			conn = getConnection();
+			//1. 드라이버 로딩(class 로딩) 동적로딩
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			//2. DB 연결
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+
+			conn = DriverManager.getConnection(url, "webdb", "webdb");
 			//3. statement 생성
 			stmt = conn.createStatement();
 
@@ -126,7 +145,9 @@ public class GuestBookDao {
 				list.add(vo);
 			}
 
-		} catch(SQLException e2) {
+		} catch (ClassNotFoundException e1) {
+			System.out.println("드라이버 로딩 실패 : " + e1);
+		} catch (SQLException e2) {
 			System.out.println("DB 연결 실패 : " + e2);
 		} finally{
 			try{
