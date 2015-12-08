@@ -10,8 +10,9 @@
 <title>방명록</title>
 </head>
 <body>
-	<form method="post" action="delete.jsp?no=<%=no%>">
+	<form method="post" action="delete.jsp?no=<%=no%>"><!-- get -->
 	<input type='hidden' name="id" value="">
+	<%-- <input type='hidden' name="id" value="<%=no%>"> --%><!-- post -->
 	<!--  -->
 	<table>
 		<tr>
