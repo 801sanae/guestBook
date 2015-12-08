@@ -1,4 +1,4 @@
-# guestBook
+# guestBook 12/08
 MVC 1 JSP, JDBC
 
 단점
